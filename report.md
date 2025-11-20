@@ -14,7 +14,7 @@ With that, I've only implemented one real model at the moment, a model that reco
     - Rare cards are almost never competing against each other until floor 16, so their pick rates will be very inflated before that
     - Still favors rare and uncommon cards, since they're generally stronger (bad)
 
-Since a card reward is (almost always) three cards, a random model should recommend correctly 33.3% of the time. We should be able to get significantly above that with smarter models.
+Since a card reward is (almost always) three cards, a random model should recommend correctly 33.3% of the time. My goal by the end of this project is to recommend correctly 80% of the time, so 80% accuracy.
 
 Even though I only have one implemented model so far, I still have plenty of ideas for other models:
 - Finding which cards are the most present within decks at a certain floor (technically different from pickrate)
@@ -24,6 +24,16 @@ Even though I only have one implemented model so far, I still have plenty of ide
 
 ### Model Evaluation
 
-Yeah so uh there's nothing here
+When I designed the model I have, I forgot to set aside data for a train-test split before aggregating. I also did not evaluate on the main data set (lack of time), so we only have the data points from my personal gameplay. So, these metrics should be taken with a grain (or maybe an entire shaker full) of salt. With that aside, here's how the model performed while predicting the training data:
 
-I just didn't have enough time this week to get through everything I needed to. I had a project due on Monday and two midterms on Tuesday, I just haven't had the time to put towards this project. Maybe I'll stay up late and everything will be done by the time it gets graded, but for now just so I have something to turn in there's nothing here for now
+![](rocauc-atfloor.png)
+
+ROC-AUC is not the main metric I'm targeting (that's accuracy), but a ROC-AUC of 0.7 is not bad, at least compared to random. We also got measures for accuracy:
+
+||Random|Model|
+|-|:-:|:-:|
+|Accuracy|0.31|0.68|
+
+Once again, we're predicting on the training data, but we're already predicting almost 70% of card choices correctly.
+
+I would love to do more work on this right now, especially to implement a train-test split and get actual metrics that I can trust, but unfortunately it is 40 minutes past the deadline and I need to sleep (:
